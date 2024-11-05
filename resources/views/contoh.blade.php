@@ -17,7 +17,7 @@
             <li><a href="{{ url('contoh') }}">Home</a></li>
             <li><a href="{{ url('produk') }}">Produk</a></li>
             <li><a href="#">Penjualan</a></li>
-            <li><a href="#">Laporan</a></li>
+            <li><a href="{{ url('laporan') }}">Laporan</a></li>
             <li><a href="#">Pengaturan</a></li>
         </ul>
     </div>
@@ -53,20 +53,15 @@
         </div>
 
         <!-- Sales Chart -->
+
+        <!-- <script src="script.js"></script> -->
         <div id="chart">
             <h2>Grafik Penjualan Bulanan</h2>
-            <canvas id="salesChart"></canvas>
+            {!! $chart->container() !!}
         </div>
-    </div>
 
-</html>
-
-
-<footer>
-    <p>&copy; 2024 Aplikasi Penjualan. All rights reserved.</p>
-</footer>
-
-<!-- <script src="script.js"></script> -->
+        <script src="{{ $chart->cdn() }}"></script>
+        {{ $chart->script() }}
 </body>
 
 </html>

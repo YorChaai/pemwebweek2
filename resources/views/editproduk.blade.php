@@ -17,7 +17,7 @@
             <li><a href="{{ url('contoh') }}">Home</a></li>
             <li><a href="{{ url('produk') }}">Produk</a></li>
             <li><a href="#">Penjualan</a></li>
-            <li><a href="#">Laporan</a></li>
+            <li><a href="{{ url('laporan') }}">Laporan</a></li>
             <li><a href="#">Pengaturan</a></li>
         </ul>
     </div>
@@ -40,7 +40,7 @@
                 <h1>Edit Produk</h1>
 
                 <!-- Form to edit a new produk -->
-                <form action="{{ url('produk/edit/' . $ubahproduk->kode_produk) }}" method="POST"
+                <form action="{{ url(Auth::user()->role . '/produk/edit/' . $ubahproduk->kode_produk) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
