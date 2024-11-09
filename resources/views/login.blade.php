@@ -24,7 +24,7 @@
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
-                </form>x
+                </form>
                 <p>{{ session('error') }}</p>
                 <p>Don't have an account? <a href="{{ url('/register') }}">Register</a></p>
             </div>

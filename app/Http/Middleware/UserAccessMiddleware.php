@@ -12,20 +12,27 @@ class UserAccessMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-     /**Fungsi middleware untuk membatasi akses halaman tertentu berdasarkan role user*/
     public function handle(Request $request, Closure $next, $userType): Response
     {
-        // cek apakah user sudah login
-        if (Auth::user()->role == $userType) {
-            return $next($request);
+
+        if (Auth::check()) {
+
+            if (Auth::user()->role == 'admin') {
+                return $next($request);
+            }
+
+
+            if (Auth::user()->role == $userType) {
+                return $next($request);
+            }
         }
 
-        // jika user tidak memiliki akses, kirim pesan error
+
         return response()->json([
-            'error' => 'You do not have permission to access for this page.',
+            'error' => 'Anda tidak memiliki izin untuk mengakses halaman ini',
             'userType' => $userType
-        ]);
+        ], 403);
     }
 }
